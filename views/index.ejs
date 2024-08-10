@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include("./partials/head.ejs") %>
+  <body>
+    <%- include("./partials/navbar.ejs") %>
+    <main>
+      <div class="hero bg-base-200 min-h-screen">
+        <div class="hero-content text-center">
+          <div class="max-w-md">
+            <h1 class="text-5xl font-bold">Welcome to Course Management</h1>
+            <p class="py-6">
+              Here you can manage courses, students, and instructors.
+            </p>
+            <button class="btn btn-primary">
+              <a href="/courses">Courses</a>
+            </button>
+            <button class="btn btn-secondary">
+              <a href="/students">Students</a>
+            </button>
+            <button class="btn btn-accent">
+              <a href="/instructors">Instructors</a>
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+    <%- include("./partials/footer.ejs") %>
+  </body>
+</html>
