@@ -15,4 +15,15 @@ const addCoursePage = async (req, res) => {
   res.render("newCourse", { pageTitle: "Add a Course" });
 };
 
-module.exports = { getCourses, postCourse, addCoursePage };
+const deleteCourse = async (req, res) => {
+  const id = req.params.id;
+  try {
+    await db.deleteCourse(id);
+    res.status(200).json({ message: `Course ${id} deleted` });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: `Failed to delete course ${id}.` });
+  }
+};
+
+module.exports = { getCourses, postCourse, addCoursePage, deleteCourse };

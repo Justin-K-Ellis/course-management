@@ -9,4 +9,8 @@ const addCourse = async (course) => {
   await pool.query("INSERT INTO courses (course_name) VALUES ($1)", [course]);
 };
 
-module.exports = { getCourses, addCourse };
+const deleteCourse = async (id) => {
+  await pool.query("DELETE FROM courses WHERE id = $1", [id]);
+};
+
+module.exports = { getCourses, addCourse, deleteCourse };

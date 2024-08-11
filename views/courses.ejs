@@ -16,6 +16,7 @@
                 <tr class="bg-primary-content">
                   <th>Course ID</th>
                   <th>Name</th>
+                  <th>Delete</th>
                 </tr>
               </thead>
               <tbody>
@@ -24,6 +25,14 @@
                 <tr class="hover">
                   <th><%= course.id %></th>
                   <td><%= course.course_name %></td>
+                  <td>
+                    <button
+                      class="btn btn-xs btn-warning"
+                      id="<%= course.id %>"
+                    >
+                      Del
+                    </button>
+                  </td>
                 </tr>
                 <% }) %>
               </tbody>
