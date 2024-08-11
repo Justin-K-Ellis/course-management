@@ -9,4 +9,4 @@ const addCourse = async (course) => {
   await pool.query("INSERT INTO courses (course_name) VALUES ($1)", [course]);
 };
 
-module.exports = { getCourses };
+module.exports = { getCourses, addCourse };

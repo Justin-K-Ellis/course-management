@@ -7,6 +7,8 @@ const coursesController = require("./controllers/coursesController.js");
 router.get("/", indexController.getIndex);
 // Courses controller
 router.get("/courses", coursesController.getCourses);
+router.post("/postcourse", coursesController.postCourse);
+router.get("/addcourse", coursesController.addCoursePage);
 // Students controller
 router.get("/students", indexController.getStudents);
 // Instructors controller
