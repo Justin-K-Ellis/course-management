@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include("./partials/head.ejs") %>
+  </head>
+  <body>
+    <div id="outer-container" class="flex flex-col h-screen justify-between">
+      <%- include("./partials/navbar.ejs") %>
+      <main class="mb-auto">
+        <div class="mx-auto w-4/6 flex flex-col items-center">
+          <%- include("./partials/pageTitle.ejs", {pageTitle}) %>
+          <div class="shadow-md rounded-md p-8">
+            <form id="form">
+              <label for="newCourseName">Rename course</label>
+              <input
+                type="text"
+                id="newCourseName"
+                name="newCourseName"
+                placeholder="<%= courseName %>"
+                class="input input-bordered w-full max-w-xs"
+                required
+              />
+              <input
+                type="text"
+                name="courseID"
+                id="courseID"
+                value="<%= courseID %>"
+                style="display: none"
+              />
+              <button
+                type="button"
+                class="btn btn-primary"
+                id="new-course-name-btn"
+              >
+                Submit
+              </button>
+            </form>
+          </div>
+        </div>
+      </main>
+      <%- include("./partials/footer.ejs") %>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+      const api = axios.create({ baseURL: "/" });
+      const form = document.querySelector("#form");
+      const newCourseNameBtn = document.querySelector("#new-course-name-btn");
+
+      const submitCourseNameChange = (event) => {
+        event.preventDefault();
+        const formData = new FormData(form);
+        const newCourseName = formData.get("newCourseName");
+        const courseID = formData.get("courseID");
+        console.log(newCourseName, courseID);
+        api
+          .put(`/updatecourse/${courseID}`, { newCourseName })
+          .then((response) => {
+            console.log("Updated accepted.", response);
+            window.location = "/courses";
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      };
+
+      newCourseNameBtn.addEventListener("click", submitCourseNameChange);
+    </script>
+  </body>
+</html>

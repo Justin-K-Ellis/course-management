@@ -17,6 +17,7 @@
                   <th>Course ID</th>
                   <th>Name</th>
                   <th>Delete</th>
+                  <th>Update</th>
                 </tr>
               </thead>
               <tbody>
@@ -33,7 +34,15 @@
                       Del
                     </button>
                   </td>
+                  <td>
+                    <a
+                      href="/updatecourse/<%= course.id %>"
+                      class="btn btn-xs btn-secondary"
+                      >Update</a
+                    >
+                  </td>
                 </tr>
+
                 <% }) %>
               </tbody>
             </table>

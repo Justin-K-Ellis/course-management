@@ -21,9 +21,38 @@ const deleteCourse = async (req, res) => {
     await db.deleteCourse(id);
     res.status(200).json({ message: `Course ${id} deleted` });
   } catch (error) {
-    console.log(error);
     res.status(500).json({ message: `Failed to delete course ${id}.` });
   }
 };
 
-module.exports = { getCourses, postCourse, addCoursePage, deleteCourse };
+const updateCoursePage = async (req, res) => {
+  // console.log("updateCoursePage called with", req.params);
+  const courseID = req.params.id;
+  const data = await db.getSingleCourseName(courseID);
+  const courseName = data[0].course_name;
+  res.render("updatecourse", {
+    pageTitle: "Update Course",
+    courseName,
+    courseID,
+  });
+};
+
+const updateCourseName = async (req, res) => {
+  const id = req.params.id;
+  const newCourseName = req.body.newCourseName;
+  try {
+    await db.updateCourseName(newCourseName, id);
+    res.json({ message: "Update successful." });
+  } catch (error) {
+    res.status(500).json({ message: `Failed to update course. ${error}` });
+  }
+};
+
+module.exports = {
+  getCourses,
+  postCourse,
+  addCoursePage,
+  deleteCourse,
+  updateCoursePage,
+  updateCourseName,
+};
