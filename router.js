@@ -9,6 +9,7 @@ router.get("/", indexController.getIndex);
 router.get("/courses", coursesController.getCourses);
 router.post("/postcourse", coursesController.postCourse);
 router.get("/addcourse", coursesController.addCoursePage);
+router.delete("/delete/:id", coursesController.deleteCourse);
 // Students controller
 router.get("/students", indexController.getStudents);
 // Instructors controller
