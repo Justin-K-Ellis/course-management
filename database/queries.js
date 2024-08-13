@@ -1,7 +1,9 @@
 const pool = require("./pool.js");
 
 const getCourses = async () => {
-  const { rows } = await pool.query("SELECT * FROM courses ORDER BY id ASC");
+  const { rows } = await pool.query(
+    "SELECT * FROM courses ORDER BY course_name ASC"
+  );
   return rows;
 };
 
