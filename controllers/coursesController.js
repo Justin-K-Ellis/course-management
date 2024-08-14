@@ -26,7 +26,6 @@ const deleteCourse = async (req, res) => {
 };
 
 const updateCoursePage = async (req, res) => {
-  // console.log("updateCoursePage called with", req.params);
   const courseID = req.params.id;
   const data = await db.getSingleCourseName(courseID);
   const courseName = data[0].course_name;

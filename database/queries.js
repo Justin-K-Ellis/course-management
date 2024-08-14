@@ -2,7 +2,12 @@ const pool = require("./pool.js");
 
 const getCourses = async () => {
   const { rows } = await pool.query(
-    "SELECT * FROM courses ORDER BY course_name ASC"
+    // "SELECT * FROM courses ORDER BY course_name ASC"
+    `SELECT courses.id, courses.course_name, CONCAT(instructors.first_name_inst, ' ', instructors.last_name_inst) AS inst_full_name
+FROM courses
+JOIN instructors
+ON courses.instructor_id = instructors.id
+ORDER BY course_name ASC;`
   );
   return rows;
 };
