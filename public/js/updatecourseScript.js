@@ -7,9 +7,10 @@ const submitCourseNameChange = (event) => {
   const formData = new FormData(form);
   const newCourseName = formData.get("newCourseName");
   const courseID = formData.get("courseID");
-  console.log(newCourseName, courseID);
+  const newInstructorName = formData.get("instructorChoice");
+  console.log(newCourseName, courseID, newInstructorName);
   api
-    .put(`/updatecourse/${courseID}`, { newCourseName })
+    .put(`/updatecourse/${courseID}`, { newCourseName, newInstructorName })
     .then((response) => {
       console.log("Updated accepted.", response);
       window.location = "/courses";

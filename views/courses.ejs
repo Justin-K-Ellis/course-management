@@ -27,7 +27,7 @@
                 <tr class="hover">
                   <th><%= course.id %></th>
                   <td><%= course.course_name %></td>
-                  <td><%= course.inst_full_name %></td>
+                  <td><%= course.inst_name %></td>
                   <td>
                     <button
                       class="btn btn-xs btn-warning"
@@ -39,7 +39,7 @@
                   <td>
                     <a
                       href="/updatecourse/<%= course.id %>"
-                      class="btn btn-xs btn-secondary"
+                      class="btn btn-xs btn-accent"
                       >Update</a
                     >
                   </td>

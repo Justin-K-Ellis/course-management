@@ -9,8 +9,4 @@ const getStudents = (req, res) => {
   res.send(cs);
 };
 
-const getInstructors = (req, res) => {
-  res.send(cs);
-};
-
-module.exports = { getIndex, getStudents, getInstructors };
+module.exports = { getIndex, getStudents };
