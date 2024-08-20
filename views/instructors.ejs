@@ -4,30 +4,36 @@
     <%- include("./partials/head.ejs") %>
   </head>
   <body>
-    <%- include("./partials/containerTop.ejs") %>
-          <%- include("./partials/pageTitle", {pageTitle}) %>
-          <div class="overflow-x-auto shadow-md rounded-md">
-            <table class="table">
-              <thead>
-                <tr class="bg-primary-content">
-                  <th>Name</th>
-                  <th>Info</th>
-                  <th>Update</th>
-                  <th>Delete</th>
-                </tr>
-              </thead>
-              <tbody>
-                <% instructors.forEach(inst => { %>
-                <tr class="hover">
-                  <th><%= inst.inst_name %></th>
-                  <td><a href="#" class="btn btn-success btn-xs">Info</a></td>
-                  <td><a href="#" class="btn btn-accent btn-xs">Update</a></td>
-                  <td><a href="#" class="btn btn-warning btn-xs">Delete</a></td>
-                </tr>
-                <% }) %>
-              </tbody>
-            </table>
-          </div>
-          <%- include("./partials/containerBottom.ejs") %>
+    <%- include("./partials/containerTop.ejs") %> <%-
+    include("./partials/pageTitle", {pageTitle}) %>
+    <div class="overflow-x-auto shadow-md rounded-md">
+      <table class="table">
+        <thead>
+          <tr class="bg-primary-content">
+            <th>Name</th>
+            <th>Info</th>
+            <th>Update</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% instructors.forEach(inst => { %>
+          <tr class="hover">
+            <th><%= inst.inst_name %></th>
+            <td>
+              <a
+                href="/instructors-courses/<%= inst.id %>"
+                class="btn btn-success btn-xs"
+                >Info</a
+              >
+            </td>
+            <td><a href="#" class="btn btn-accent btn-xs">Update</a></td>
+            <td><a href="#" class="btn btn-warning btn-xs">Delete</a></td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+    <%- include("./partials/containerBottom.ejs") %>
   </body>
 </html>

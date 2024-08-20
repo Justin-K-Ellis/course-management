@@ -18,20 +18,11 @@ const deleteInstructor = async (req, res) => {
   }
 };
 
-// const getIndividualInstructor = async (req, res) => {
-//   const instructorId = req.params.id;
-//   try {
-
-//   } catch (error) {
-//     res.status(500).json({message: error})
-//   }
-// }
-
 const getInstructorsCourses = async (req, res) => {
   const id = req.params.id;
   try {
     const instructorsCourses = await db.getInstructorsCourses(id);
-    // res.status(200).json(instructorsCourses); // TODO: render this in a page view
+    // instructorsCourses.forEach((inst) => console.log(inst));
     res.render("single-instructor", { instructorsCourses });
   } catch (error) {
     res.status(500).json({ message: error });

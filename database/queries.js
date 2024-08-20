@@ -61,7 +61,7 @@ const updateCourseInstructor = async (id, courseName) => {
 // Instructor pages queries
 const getInstructorList = async () => {
   const { rows } = await pool.query(
-    "SELECT inst_name FROM instructors ORDER BY inst_name ASC"
+    "SELECT inst_name, id FROM instructors ORDER BY inst_name ASC"
   );
   return rows;
 };
@@ -72,7 +72,7 @@ const deleteInstructor = async (id) => {
 
 const getInstructorsCourses = async (instructorId) => {
   const { rows } = await pool.query(
-    `SELECT instructors.inst_name, courses.id, courses.course_name 
+    `SELECT instructors.inst_name, instructors.id, courses.id, courses.course_name 
                                       FROM courses
                                       JOIN instructors
                                       ON courses.instructor_id = instructors.id
