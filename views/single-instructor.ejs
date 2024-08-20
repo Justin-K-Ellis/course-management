@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include("./partials/head.ejs") %>
+  </head>
+  <body>
+    <%- include("./partials/containerTop.ejs") %>
+    <div class="card bg-base-100 w-96 shadow-xl mt-4 pb-4 pr-4">
+      <div class="card-body">
+        <h2 class="card-title text-2xl"><%- instructorsCourses[0].inst_name %></h2>
+        <h3 class="font-bold">Courses taught:</h3>
+        <ul class="list-disc ml-4">
+          <% instructorsCourses.forEach(inst => { %>
+           <li><%= inst.course_name %></li>
+          <% }) %>
+        </ul>
+        </div>
+        <div class="card-actions justify-end">
+          <button class="btn btn-primary">Update</button>
+          <button class="btn btn-warning">Delete</button>
+        </div>
+      </div>
+    </div>
+    <%- include("./partials/containerBottom.ejs") %>
+  </body>
+</html>

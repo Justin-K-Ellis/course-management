@@ -30,10 +30,6 @@ const updateCoursePage = async (req, res) => {
   const data = await db.getSingleCourseName(courseID);
   const courseName = data[0].course_name;
   const instructorList = await db.getInstructorList();
-  // console.log("The instructor list is:", typeof instructorList);
-  // instructorList.forEach((instructor) => {
-  //   console.log(instructor);
-  // });
   res.render("updatecourse", {
     pageTitle: "Update Course",
     courseName,
@@ -50,11 +46,9 @@ const updateCourseInfo = async (req, res) => {
     // update course name
     await db.updateCourseName(newCourseName, id);
     // update course instructor
-    console.log("New instructor:", newInstructor, "course id:", id);
     const [instructorId] = await db.getInstructorIdFromInstructorName(
       newInstructor
     );
-    console.log("Instructor id:", instructorId.id);
     await db.updateCourseInstructor(instructorId.id, newCourseName);
     res.json({ message: "Update successful." });
   } catch (error) {

@@ -4,56 +4,40 @@
     <%- include("./partials/head.ejs") %>
   </head>
   <body>
-    <div id="outer-container" class="flex flex-col h-screen justify-between">
-      <%- include("./partials/navbar.ejs") %>
-      <main class="mb-auto">
-        <div class="mx-auto w-4/6 flex flex-col items-center">
-          <%- include("partials/pageTitle.ejs", {pageTitle}) %>
-          <div class="overflow-x-auto shadow-md rounded-md">
-            <table class="table">
-              <!-- table head -->
-              <thead>
-                <tr class="bg-primary-content">
-                  <th>Course ID</th>
-                  <th>Name</th>
-                  <th>Instructor</th>
-                  <th>Delete</th>
-                  <th>Update</th>
-                </tr>
-              </thead>
-              <tbody>
-                <!-- Iterate over courses -->
-                <% courses.forEach(course => { %>
-                <tr class="hover">
-                  <th><%= course.id %></th>
-                  <td><%= course.course_name %></td>
-                  <td><%= course.inst_name %></td>
-                  <td>
-                    <button
-                      class="btn btn-xs btn-warning"
-                      id="<%= course.id %>"
-                    >
-                      Del
-                    </button>
-                  </td>
-                  <td>
-                    <a
-                      href="/updatecourse/<%= course.id %>"
-                      class="btn btn-xs btn-accent"
-                      >Update</a
-                    >
-                  </td>
-                </tr>
+    <%- include("./partials/containerTop.ejs") %> <%- include("partials/pageTitle.ejs", {pageTitle}) %>
+    <div class="overflow-x-auto shadow-md rounded-md">
+      <table class="table">
+        <!-- table head -->
+        <thead>
+          <tr class="bg-primary-content">
+            <th>Course ID</th>
+            <th>Name</th>
+            <th>Instructor</th>
+            <th>Delete</th>
+            <th>Update</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Iterate over courses -->
+          <% courses.forEach(course => { %>
+          <tr class="hover">
+            <th><%= course.id %></th>
+            <td><%= course.course_name %></td>
+            <td><%= course.inst_name %></td>
+            <td>
+              <button class="btn btn-xs btn-warning" id="<%= course.id %>">Del</button>
+            </td>
+            <td>
+              <a href="/updatecourse/<%= course.id %>" class="btn btn-xs btn-accent">Update</a>
+            </td>
+          </tr>
 
-                <% }) %>
-              </tbody>
-            </table>
-          </div>
-          <a href="/addcourse" class="btn btn-primary mt-4">Add course</a>
-        </div>
-      </main>
-      <%- include("./partials/footer.ejs") %>
+          <% }) %>
+        </tbody>
+      </table>
     </div>
+    <a href="/addcourse" class="btn btn-primary mt-4">Add course</a>
+    <%- include("./partials/containerBottom.ejs") %>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="/js/coursesScript.js"></script>
   </body>

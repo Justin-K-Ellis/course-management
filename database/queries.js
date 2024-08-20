@@ -1,5 +1,6 @@
 const pool = require("./pool.js");
 
+// Course pages queries
 const getCourses = async () => {
   const { rows } = await pool.query(
     `SELECT courses.id, courses.course_name, instructors.inst_name
@@ -57,9 +58,26 @@ const updateCourseInstructor = async (id, courseName) => {
   );
 };
 
+// Instructor pages queries
 const getInstructorList = async () => {
   const { rows } = await pool.query(
     "SELECT inst_name FROM instructors ORDER BY inst_name ASC"
+  );
+  return rows;
+};
+
+const deleteInstructor = async (id) => {
+  await pool.query("DELETE FROM instructors WHERE id = $1", [id]);
+};
+
+const getInstructorsCourses = async (instructorId) => {
+  const { rows } = await pool.query(
+    `SELECT instructors.inst_name, courses.id, courses.course_name 
+                                      FROM courses
+                                      JOIN instructors
+                                      ON courses.instructor_id = instructors.id
+                                      WHERE instructors.id = $1;`,
+    [instructorId]
   );
   return rows;
 };
@@ -74,4 +92,6 @@ module.exports = {
   updateCourseInstructor,
   updateCourseName,
   getInstructorList,
+  deleteInstructor,
+  getInstructorsCourses,
 };

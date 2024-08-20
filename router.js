@@ -20,6 +20,10 @@ router.get("/students", indexController.getStudents);
 
 // Instructors controller
 router.get("/instructors", instructorController.getInstructors);
-router.get("/instructorlist", instructorController.getInstructorList);
+router.delete("/delete-instructor/:id", instructorController.deleteInstructor);
+router.get(
+  "/instructors-courses/:id",
+  instructorController.getInstructorsCourses
+);
 
 module.exports = router;
