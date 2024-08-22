@@ -9,18 +9,18 @@ router.get("/", indexController.getIndex);
 
 // Courses controller
 router.get("/courses", coursesController.getCourses);
-router.post("/postcourse", coursesController.postCourse);
-router.get("/addcourse", coursesController.addCoursePage);
-router.delete("/delete/:id", coursesController.deleteCourse);
-router.get("/updatecourse/:id(\\d+)", coursesController.updateCoursePage);
-router.put("/updatecourse/:id", coursesController.updateCourseInfo);
+router.post("/course/postcourse", coursesController.postCourse);
+router.get("/courses/addcourse", coursesController.addCoursePage);
+router.delete("/courses/delete/:id", coursesController.deleteCourse);
+router.get("/courses/update/:id(\\d+)", coursesController.updateCoursePage);
+router.put("/courses/update/:id", coursesController.updateCourseInfo);
 
 // Students controller
 router.get("/students", indexController.getStudents);
 
 // Instructors controller
 router.get("/instructors", instructorController.getInstructors);
-router.delete("/delete-instructor/:id", instructorController.deleteInstructor);
+router.delete("instructors/delete/:id", instructorController.deleteInstructor);
 router.get(
   "/instructors-courses/:id",
   instructorController.getInstructorsCourses
