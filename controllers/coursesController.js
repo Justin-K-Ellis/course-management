@@ -2,17 +2,22 @@ const db = require("../database/queries.js");
 
 const getCourses = async (req, res) => {
   const courses = await db.getCourses();
-  res.render("courses", { courses, pageTitle: "Manage Courses" });
+  res.json(courses);
 };
 
 const postCourse = async (req, res) => {
-  const course_name = req.body.course_name;
-  await db.addCourse(course_name);
-  res.redirect("/courses");
-};
-
-const addCoursePage = async (req, res) => {
-  res.render("newCourse", { pageTitle: "Add a Course" });
+  try {
+    const course_name = req.body.course_name;
+    const instructorName = req.body.instructorName;
+    const [instructorId] = await db.getInstructorIdFromInstructorName(
+      instructorName
+    );
+    await db.addCourse(course_name, instructorId.id);
+    res.status(200).json({ message: `Course "${course_name}" accepted.` });
+  } catch (error) {
+    console.log(`Something went wrong. ${error}`);
+    res.status(500).json({ message: error });
+  }
 };
 
 const deleteCourse = async (req, res) => {
@@ -23,19 +28,6 @@ const deleteCourse = async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: `Failed to delete course ${id}.` });
   }
-};
-
-const updateCoursePage = async (req, res) => {
-  const courseID = req.params.id;
-  const data = await db.getSingleCourseName(courseID);
-  const courseName = data[0].course_name;
-  const instructorList = await db.getInstructorList();
-  res.render("updatecourse", {
-    pageTitle: "Update Course",
-    courseName,
-    courseID,
-    instructorList,
-  });
 };
 
 const updateCourseInfo = async (req, res) => {
@@ -56,19 +48,19 @@ const updateCourseInfo = async (req, res) => {
   }
 };
 
-const getAllInstructorName = async (req, res) => {
+const getAllCoursesStudents = async (req, res) => {
   try {
-    await db.getAllInstructorName();
+    const coursesStudents = await db.getAllCoursesStudents();
+    res.json(coursesStudents);
   } catch (error) {
-    console.log(error);
+    res.status(500).json(error);
   }
 };
 
 module.exports = {
   getCourses,
   postCourse,
-  addCoursePage,
   deleteCourse,
-  updateCoursePage,
   updateCourseInfo,
+  getAllCoursesStudents,
 };
