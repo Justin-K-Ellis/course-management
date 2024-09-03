@@ -1,19 +1,13 @@
 const express = require("express");
 const router = express.Router();
-const indexController = require("./controllers/indexController.js");
 const coursesController = require("./controllers/coursesController.js");
 const instructorController = require("./controllers/instructorController.js");
 const studentsController = require("./controllers/studentsController.js");
 
-// Index
-router.get("/", indexController.getIndex);
-
 // Courses controller
 router.get("/courses", coursesController.getCourses);
 router.post("/courses/post", coursesController.postCourse);
-// router.get("/courses/addcourse", coursesController.addCoursePage);
 router.delete("/courses/delete/:id", coursesController.deleteCourse);
-router.get("/courses/update/:id(\\d+)", coursesController.updateCoursePage);
 router.put("/courses/update/:id", coursesController.updateCourseInfo);
 router.get(
   "/courses/courses-students",
