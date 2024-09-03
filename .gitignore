@@ -1,6 +1,7 @@
 /node_modules
 plans.md
 .env
+.env_dev
 sql.sql
 public/source.css
 .prettierrcq
